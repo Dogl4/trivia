@@ -6,6 +6,7 @@ export const SET_TOKEN_ERROR = 'SET_TOKEN_ERROR';
 export const SET_TOKEN_SUCCESS = 'SET_TOKEN_SUCCESS';
 export const SET_TRIVIA_SUCCESS = 'SET_TRIVIA_SUCCESS';
 export const SET_TRIVIA_ERROR = 'SET_TRIVIA_ERROR';
+export const SET_RANKING = 'SET_RANKING';
 
 export const setPlayerInfo = (payload) => ({
   type: SET_PLAYER_INFO,
@@ -51,3 +52,8 @@ export const getApiTriviaThunk = () => async (dispatch) => {
     dispatch(getApiTriviaError(error));
   }
 };
+
+export const setRanking = (payload) => ({
+  type: SET_RANKING,
+  payload,
+});

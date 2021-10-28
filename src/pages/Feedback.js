@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import Header from '../components/Header';
+import { setRanking } from '../actions';
 
 class Feedback extends Component {
   constructor() {
@@ -13,6 +16,7 @@ class Feedback extends Component {
     this.sendToInitial = this.sendToInitial.bind(this);
     this.getAssertions = this.getAssertions.bind(this);
     this.sendToRanking = this.sendToRanking.bind(this);
+    this.handleRanking = this.handleRanking.bind(this);
   }
 
   componentDidMount() {
@@ -23,7 +27,6 @@ class Feedback extends Component {
     const stateStorage = JSON.parse(localStorage.getItem('state'));
     this.setState({ assertions: stateStorage.player.assertions,
       score: stateStorage.player.score });
-    console.log('con fe');
   }
 
   sendToInitial() {
@@ -31,9 +34,48 @@ class Feedback extends Component {
     history.push('/');
   }
 
+  handleRanking() {
+    const { addRanking } = this.props;
+    const stateStorage = JSON.parse(localStorage.getItem('state'));
+    const ranking = [{
+      image: [`https://www.gravatar.com/avatar/${stateStorage.player.gravatarEmail}`],
+      name: [stateStorage.player.name],
+      score: [stateStorage.player.score],
+    }];
+    addRanking(ranking);
+    // const rankingArray = Object.values(ranking);
+    // return !stateStorage.ranking ? localStorage.setItem('ranking', JSON.stringify(ranking))
+    return localStorage.setItem('ranking', JSON.stringify({
+      ...stateStorage,
+      ranking: [{ ...stateStorage.ranking,
+        image: [...ranking.image],
+        name: [...ranking.name],
+        score: [...ranking.score],
+      }],
+    }));
+  }
+
   sendToRanking() {
     const { history } = this.props;
     history.push('/ranking');
+    this.handleRanking();
+    // const infoPlayer = JSON.parse(localStorage.getItem('state'));
+    // console.log(infoPlayer);
+    // console.log(infoPlayer.player.name);
+
+    // const imageFake = [];
+    // const imageReal = imageFake.push(infoPlayer.player.gravatarEmail);
+    // const nameFake = [];
+    // const nameReal = nameFake.push(infoPlayer.player.name);
+    // const scoreFake = [];
+    // const scoreReal = scoreFake.push(infoPlayer.player.score);
+    // const ranking = {
+    //   image: imageFake,
+    //   name: nameFake,
+    //   score: scoreFake,
+    // };
+    // localStorage.setItem('ranking', JSON.stringify(ranking));
+    // addRanking(ranking);
   }
 
   render() {
@@ -75,6 +117,11 @@ Feedback.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  addRanking: PropTypes.func.isRequired,
 };
 
-export default Feedback;
+const mapDispatchToProps = (dispatch) => ({
+  addRanking: (state) => dispatch(setRanking(state)),
+});
+
+export default connect(null, mapDispatchToProps)(Feedback);
