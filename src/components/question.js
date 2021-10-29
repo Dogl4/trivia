@@ -18,8 +18,6 @@ class Question extends React.Component {
   }
 
   newScores(stateStorage, scoreCurrent) {
-    console.log(scoreCurrent, 'scoreCurrent');
-    console.log(stateStorage, 'stateStorage');
     document.getElementById('score').innerHTML = (!stateStorage ? scoreCurrent
       : (stateStorage.player.score + scoreCurrent));
   }

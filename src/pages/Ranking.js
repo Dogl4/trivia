@@ -5,24 +5,25 @@ export class RankingPlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: '',
-      name: '',
-      score: '',
+      ranking: [],
     };
     this.sendToLogin = this.sendToLogin.bind(this);
-    this.getPlayerInfo = this.getPlayerInfo.bind(this);
+    this.sortRanking = this.sortRanking.bind(this);
   }
 
   componentDidMount() {
-    this.getPlayerInfo();
+    this.sortRanking();
   }
 
-  getPlayerInfo() {
-    const stateStorage = JSON.parse(localStorage.getItem('state'));
-    this.setState({
-      image: stateStorage.player.image,
-      name: stateStorage.player.name,
-      score: stateStorage.player.score });
+  sortRanking() {
+    const ranking = JSON.parse(localStorage.getItem('ranking'));
+    const scores = ranking.reduce((acc, player) => {
+      acc.push(player.score);
+      return acc;
+    }, []);
+    const sortedScores = scores.sort((a, b) => b - a)
+      .map((score) => ranking.filter((player) => player.score === score));
+    this.setState({ ranking: sortedScores });
   }
 
   sendToLogin() {
@@ -31,13 +32,18 @@ export class RankingPlayer extends Component {
   }
 
   render() {
-    const { image, name, score } = this.state;
+    const { ranking } = this.state;
+    console.log(ranking);
     return (
       <div data-testid="ranking-title">
         <h1>Ranking</h1>
-        <img src={ image } alt="imagem do usuario" />
-        <p data-testid="player-name-0">{name}</p>
-        <p data-testid="player-score-0">{score}</p>
+        {ranking.map((player, index) => (
+          <div key={ index }>
+            <img src={ player[0].image } alt="imagem do usuario" />
+            <p data-testid={ `player-name-${index}` }>{player[0].name}</p>
+            <p data-testid={ `player-score-${index}` }>{player[0].score}</p>
+          </div>
+        ))}
         <button
           type="button"
           data-testid="btn-go-home"

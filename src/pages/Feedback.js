@@ -35,47 +35,28 @@ class Feedback extends Component {
   }
 
   handleRanking() {
-    const { addRanking } = this.props;
-    const stateStorage = JSON.parse(localStorage.getItem('state'));
-    const ranking = [{
-      image: [`https://www.gravatar.com/avatar/${stateStorage.player.gravatarEmail}`],
-      name: [stateStorage.player.name],
-      score: [stateStorage.player.score],
-    }];
-    addRanking(ranking);
-    // const rankingArray = Object.values(ranking);
-    // return !stateStorage.ranking ? localStorage.setItem('ranking', JSON.stringify(ranking))
-    return localStorage.setItem('ranking', JSON.stringify({
-      ...stateStorage,
-      ranking: [{ ...stateStorage.ranking,
-        image: [...ranking.image],
-        name: [...ranking.name],
-        score: [...ranking.score],
-      }],
-    }));
+    const ranking = JSON.parse(localStorage.getItem('ranking'));
+    const { player } = JSON.parse(localStorage.getItem('state'));
+    const objRanking = {
+      image: `https://www.gravatar.com/avatar/${player.gravatarEmail}`,
+      name: player.name,
+      email: player.gravatarEmail,
+      score: player.score };
+    if (ranking) {
+      const rankingATT = [...ranking, objRanking];
+      localStorage.setItem('ranking', JSON.stringify(rankingATT));
+    } else {
+      const contentRanking = [
+        objRanking,
+      ];
+      localStorage.setItem('ranking', JSON.stringify(contentRanking));
+    }
   }
 
   sendToRanking() {
+    this.handleRanking();
     const { history } = this.props;
     history.push('/ranking');
-    this.handleRanking();
-    // const infoPlayer = JSON.parse(localStorage.getItem('state'));
-    // console.log(infoPlayer);
-    // console.log(infoPlayer.player.name);
-
-    // const imageFake = [];
-    // const imageReal = imageFake.push(infoPlayer.player.gravatarEmail);
-    // const nameFake = [];
-    // const nameReal = nameFake.push(infoPlayer.player.name);
-    // const scoreFake = [];
-    // const scoreReal = scoreFake.push(infoPlayer.player.score);
-    // const ranking = {
-    //   image: imageFake,
-    //   name: nameFake,
-    //   score: scoreFake,
-    // };
-    // localStorage.setItem('ranking', JSON.stringify(ranking));
-    // addRanking(ranking);
   }
 
   render() {
@@ -117,7 +98,7 @@ Feedback.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
-  addRanking: PropTypes.func.isRequired,
+  // addRanking: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
