@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import Header from '../components/Header';
+import { setRanking } from '../actions';
 
 class Feedback extends Component {
   constructor() {
@@ -13,6 +16,7 @@ class Feedback extends Component {
     this.sendToInitial = this.sendToInitial.bind(this);
     this.getAssertions = this.getAssertions.bind(this);
     this.sendToRanking = this.sendToRanking.bind(this);
+    this.handleRanking = this.handleRanking.bind(this);
   }
 
   componentDidMount() {
@@ -23,7 +27,6 @@ class Feedback extends Component {
     const stateStorage = JSON.parse(localStorage.getItem('state'));
     this.setState({ assertions: stateStorage.player.assertions,
       score: stateStorage.player.score });
-    console.log('con fe');
   }
 
   sendToInitial() {
@@ -31,7 +34,27 @@ class Feedback extends Component {
     history.push('/');
   }
 
+  handleRanking() {
+    const ranking = JSON.parse(localStorage.getItem('ranking'));
+    const { player } = JSON.parse(localStorage.getItem('state'));
+    const objRanking = {
+      image: `https://www.gravatar.com/avatar/${player.gravatarEmail}`,
+      name: player.name,
+      email: player.gravatarEmail,
+      score: player.score };
+    if (ranking) {
+      const rankingATT = [...ranking, objRanking];
+      localStorage.setItem('ranking', JSON.stringify(rankingATT));
+    } else {
+      const contentRanking = [
+        objRanking,
+      ];
+      localStorage.setItem('ranking', JSON.stringify(contentRanking));
+    }
+  }
+
   sendToRanking() {
+    this.handleRanking();
     const { history } = this.props;
     history.push('/ranking');
   }
@@ -75,6 +98,11 @@ Feedback.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  // addRanking: PropTypes.func.isRequired,
 };
 
-export default Feedback;
+const mapDispatchToProps = (dispatch) => ({
+  addRanking: (state) => dispatch(setRanking(state)),
+});
+
+export default connect(null, mapDispatchToProps)(Feedback);

@@ -16,6 +16,10 @@ class Login extends React.Component {
     this.resultCorrect = this.resultCorrect.bind(this);
   }
 
+  componentDidMount() {
+    localStorage.removeItem('state');
+  }
+
   handleChange({ target: { name, value } }) {
     this.setState({ [name]: value });
   }
@@ -57,47 +61,50 @@ class Login extends React.Component {
   render() {
     const { name, email } = this.state;
     return (
-      <main>
-        <label htmlFor="input-name">
-          Nome:
-          <input
-            type="text"
-            id="input-name"
-            name="name"
-            placeholder="insira seu nome"
-            data-testid="input-player-name"
-            value={ name }
-            onChange={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="input-email">
-          Email:
-          <input
-            type="email"
-            id="input-email"
-            name="email"
-            placeholder="grupo2@trybe.com"
-            data-testid="input-gravatar-email"
-            value={ email }
-            onChange={ this.handleChange }
-          />
-        </label>
-        <button
-          type="button"
-          disabled={ !(name.length > 0 && email.length > 0) }
-          data-testid="btn-play"
-          onClick={ this.handleClick }
-        >
-          Jogar
-        </button>
-        <button
-          data-testid="btn-settings"
-          onClick={ this.redirectConfig }
-          type="button"
-        >
-          Configurações
-        </button>
-      </main>
+      <div className="container">
+        <form className="form-container sign-in-container">
+          <h1>Sign in</h1>
+          <label htmlFor="input-name">
+            Nome:
+            <input
+              type="text"
+              id="input-name"
+              name="name"
+              placeholder="insira seu nome"
+              data-testid="input-player-name"
+              value={ name }
+              onChange={ this.handleChange }
+            />
+          </label>
+          <label htmlFor="input-email">
+            Email:
+            <input
+              type="email"
+              id="input-email"
+              name="email"
+              placeholder="grupo2@trybe.com"
+              data-testid="input-gravatar-email"
+              value={ email }
+              onChange={ this.handleChange }
+            />
+          </label>
+          <button
+            type="button"
+            disabled={ !(name.length > 0 && email.length > 0) }
+            data-testid="btn-play"
+            onClick={ this.handleClick }
+          >
+            Jogar
+          </button>
+          <button
+            data-testid="btn-settings"
+            onClick={ this.redirectConfig }
+            type="button"
+          >
+            Configurações
+          </button>
+        </form>
+      </div>
     );
   }
 }
