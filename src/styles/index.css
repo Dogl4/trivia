@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap");
+
+body {
+  background-color: #7c508a;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.btn-settings {
+  background-color: #ab90d0;
+  border: 1px solid #7c508a;
+  border-radius: 4px;
+  color: #222;
+  font-family: "Titillium Web", sans-serif;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857;
+  top: 0;
+  right: 0;
+  margin: 10px 10px 0 0;
+  padding: 6px 12px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: absolute;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.block {
+  max-width: 100vh;
+  height: 100vh;
+  color: #333232;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 80vh;
+  height: 80vh;
+  background-color: #ab90d0;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  padding: 3px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 315px;
+  height: auto;
+  background-color: #ab90d0;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  padding: 24px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+}
+
+.header {
+  background-color: #3b1f42;
+  color: #ddd;
+  display: flex;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.header a {
+  display: flex;
+  align-items: center;
+  margin: 0 12px 0 24px;
+  padding: 6px 0;
+}
+
+.header div {
+  display: flex;
+  align-items: center;
+  margin: 0 12px 0 24px;
+  padding: 2px 0;
+}
+
+.header div img, .card div img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.ranking {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.ranking div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.img {
+  width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.img-header {
+  width: 100px;
+  height: auto;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 3px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.label input {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 220px;
+  height: 30px;
+  padding: 0 10px;
+  margin: 4px 0 3px 0;
+}
+
+.label input:focus {
+  outline: none;
+}
+
+.card button {
+  background-color: #924e8c;
+  padding: 6px 16px;
+  margin: 12px 2px 0 0px;
+  border: 0.1px solid #41363a69;
+  border-radius: 4px;
+  color: #fff;
+  font-family: "Titillium Web", sans-serif;
+  box-shadow: 0 0 6px #b15ed375;
+}
+
+.question button {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 3px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Titillium Web", sans-serif;
+  background-color: #3b1f42;
+}
+
+.question .next {
+  background-color: #924e8c;
+  margin: 20px auto 0;
+  width: 60%;
+}
+
+.card button:hover {
+  box-shadow: 0 0 6px #b15ed375;
+  background-color: #7c508a;
+}

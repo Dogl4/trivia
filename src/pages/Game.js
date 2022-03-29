@@ -44,19 +44,23 @@ class Game extends React.Component {
   }
 
   render() {
-    const { questions } = this.props;
+    const { questions, nameReceive } = this.props;
     const { index } = this.state;
     const { timer } = this.state;
     return (
       <main>
         <Header />
-        <p>{`${timer} segundos restantes`}</p>
-        { questions && <Question
-          key={ index }
-          questionCurrent={ questions[index] }
-          timer={ timer }
-          buttonNext={ this.handleClick }
-        /> }
+        <div className="card">
+          { nameReceive ? (<p>{`${timer} segundos restantes`}</p>) : (
+            <a href="/"><button type="button">Restart</button></a>
+          )}
+          { questions && <Question
+            key={ index }
+            questionCurrent={ questions[index] }
+            timer={ timer }
+            buttonNext={ this.handleClick }
+          /> }
+        </div>
       </main>
     );
   }
@@ -64,11 +68,14 @@ class Game extends React.Component {
 
 const mapStateToProps = (state) => ({
   questions: state.trivia.questions,
+  nameReceive: state.player.name,
+
   state,
 });
 
 Game.propTypes = {
   questions: PropTypes.array,
+  nameReceive: PropTypes.string,
 }.isRequired;
 
 export default connect(mapStateToProps)(Game);

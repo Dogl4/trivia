@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
+import triviaPng from '../trivia.png';
 
 class Header extends Component {
   constructor() {
@@ -20,23 +21,43 @@ class Header extends Component {
     const { emailReceive, nameReceive } = this.props;
     const email = md5(emailReceive).toString();
     return (
-      <form>
-        <img
-          data-testid="header-profile-picture"
-          src={ `https://www.gravatar.com/avatar/${email}` }
-          alt={ email }
-        />
+      <header className="header">
+        <a href="/">
+          <img
+            className="img-header"
+            src={ triviaPng }
+            alt="Home Trivia"
+          />
+        </a>
         <div>
-          <p data-testid="header-player-name" id="name">{`Nome: ${nameReceive} `}</p>
+          { nameReceive
+            && (
+              <div>
+                <img
+                  data-testid="header-profile-picture"
+                  src={ `https://www.gravatar.com/avatar/${email}` }
+                  alt={ email }
+                />
+                <div>
+                  <p
+                    data-testid="header-player-name"
+                    id="name"
+                  >
+                    {`Nome: ${nameReceive} `}
+
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    Score:
+                    {' '}
+                    <span data-testid="header-score" id="score">{this.getScore()}</span>
+                  </p>
+                </div>
+              </div>
+            )}
         </div>
-        <div>
-          <p>
-            Score:
-            {' '}
-            <span data-testid="header-score" id="score">{ this.getScore() }</span>
-          </p>
-        </div>
-      </form>
+      </header>
     );
   }
 

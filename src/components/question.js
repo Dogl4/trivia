@@ -17,6 +17,13 @@ class Question extends React.Component {
     this.newScores = this.newScores.bind(this);
   }
 
+  updateBorder() {
+    this.setState({
+      green: '3px solid rgb(6, 240, 15)',
+      red: '3px solid rgb(255, 0, 0)',
+    });
+  }
+
   newScores(stateStorage, scoreCurrent) {
     document.getElementById('score').innerHTML = (!stateStorage ? scoreCurrent
       : (stateStorage.player.score + scoreCurrent));
@@ -74,7 +81,7 @@ class Question extends React.Component {
       { question, category, difficulty }, questionCurrent, timer, buttonNext,
     } = this.props;
     return (
-      <section>
+      <section className="question">
         <div>
           <h4 data-testid="question-category">{ category }</h4>
           <p data-testid="question-text">{ question }</p>
@@ -107,7 +114,7 @@ class Question extends React.Component {
             </button>
           ))}
         </div>
-        { end && <ButtonNext onClick={ buttonNext } /> }
+        { (end || (timer === 0)) && <ButtonNext onClick={ buttonNext } /> }
       </section>
     );
   }

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { /* getApiTokenThunk, */ setPlayerInfo, getApiTriviaThunk } from '../actions';
-import '../styles/login.css';
 import triviaImg from '../trivia.png';
 
 class Login extends React.Component {
@@ -66,9 +65,9 @@ class Login extends React.Component {
   render() {
     const { name, email } = this.state;
     return (
-      <div className="card">
-        <img src={ triviaImg } alt="logo" className="img" />
-        <form className="form">
+      <div className="block">
+        <form className="card">
+          <img src={ triviaImg } alt="logo" className="img" />
           <label className="label" htmlFor="input-name">
             Name
             <input

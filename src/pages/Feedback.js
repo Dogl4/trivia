@@ -25,8 +25,10 @@ class Feedback extends Component {
 
   getAssertions() {
     const stateStorage = JSON.parse(localStorage.getItem('state'));
-    this.setState({ assertions: stateStorage.player.assertions,
-      score: stateStorage.player.score });
+    this.setState({
+      assertions: stateStorage.player.assertions,
+      score: stateStorage.player.score,
+    });
   }
 
   sendToInitial() {
@@ -41,7 +43,8 @@ class Feedback extends Component {
       image: `https://www.gravatar.com/avatar/${player.gravatarEmail}`,
       name: player.name,
       email: player.gravatarEmail,
-      score: player.score };
+      score: player.score,
+    };
     if (ranking) {
       const rankingATT = [...ranking, objRanking];
       localStorage.setItem('ranking', JSON.stringify(rankingATT));
@@ -65,29 +68,31 @@ class Feedback extends Component {
     return (
       <div data-testid="feedback-text">
         <Header />
-        {assertions >= minAssertionsAllowed ? <p>Mandou bem!</p>
-          : <p>Podia ser melhor...</p>}
-        <div>
-          <p data-testid="feedback-total-question">{assertions}</p>
-          <p data-testid="feedback-total-score">{score}</p>
-        </div>
-        <div>
-          <button
-            data-testid="btn-play-again"
-            type="button"
-            onClick={ this.sendToInitial }
-          >
-            Jogar Novamente
-          </button>
-        </div>
-        <div>
-          <button
-            data-testid="btn-ranking"
-            type="button"
-            onClick={ this.sendToRanking }
-          >
-            Ver Ranking
-          </button>
+        <div className="card">
+          {assertions >= minAssertionsAllowed ? <p>Mandou bem!</p>
+            : <p>Podia ser melhor...</p>}
+          <div>
+            <p data-testid="feedback-total-question">{`Assertions: ${assertions}`}</p>
+            <p data-testid="feedback-total-score">{`Score: ${score}`}</p>
+          </div>
+          <div>
+            <button
+              data-testid="btn-play-again"
+              type="button"
+              onClick={ this.sendToInitial }
+            >
+              Jogar Novamente
+            </button>
+          </div>
+          <div>
+            <button
+              data-testid="btn-ranking"
+              type="button"
+              onClick={ this.sendToRanking }
+            >
+              Ver Ranking
+            </button>
+          </div>
         </div>
       </div>
     );

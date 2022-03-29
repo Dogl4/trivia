@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Header from '../components/Header';
 
 export class RankingPlayer extends Component {
   constructor(props) {
@@ -35,23 +36,28 @@ export class RankingPlayer extends Component {
     const { ranking } = this.state;
     console.log(ranking);
     return (
-      <div data-testid="ranking-title">
-        <h1>Ranking</h1>
-        {ranking.map((player, index) => (
-          <div key={ index }>
-            <img src={ player[0].image } alt="imagem do usuario" />
-            <p data-testid={ `player-name-${index}` }>{player[0].name}</p>
-            <p data-testid={ `player-score-${index}` }>{player[0].score}</p>
+      <>
+        <Header />
+        <div data-testid="ranking-title" className="card">
+          <h1>Ranking</h1>
+          <div className="ranking">
+            {ranking.map((player, index) => (
+              <div key={ index }>
+                <img src={ player[0].image } alt="imagem do usuario" />
+                <p data-testid={ `player-name-${index}` }>{player[0].name}</p>
+                <p data-testid={ `player-score-${index}` }>{player[0].score}</p>
+              </div>
+            ))}
           </div>
-        ))}
-        <button
-          type="button"
-          data-testid="btn-go-home"
-          onClick={ this.sendToLogin }
-        >
-          Ir para Inicio
-        </button>
-      </div>
+          <button
+            type="button"
+            data-testid="btn-go-home"
+            onClick={ this.sendToLogin }
+          >
+            Ir para Inicio
+          </button>
+        </div>
+      </>
     );
   }
 }

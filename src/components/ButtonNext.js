@@ -5,7 +5,7 @@ class ButtonNext extends React.Component {
   render() {
     const { onClick } = this.props;
     return (
-      <button type="button" onClick={ onClick } data-testid="btn-next">
+      <button type="button" className="next" onClick={ onClick } data-testid="btn-next">
         Próxima
       </button>
     );
