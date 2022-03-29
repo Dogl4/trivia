@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { /* getApiTokenThunk, */ setPlayerInfo, getApiTriviaThunk } from '../actions';
+import '../styles/login.css';
+import triviaImg from '../trivia.png';
 
 class Login extends React.Component {
   constructor(props) {
@@ -12,7 +14,7 @@ class Login extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.redirectConfig = this.redirectConfig.bind(this);
+    this.redConfig = this.redConfig.bind(this);
     this.resultCorrect = this.resultCorrect.bind(this);
   }
 
@@ -37,9 +39,12 @@ class Login extends React.Component {
     return ((!stateStorage ? localStorage.setItem('state', JSON.stringify(state))
       : (localStorage.setItem('state', JSON.stringify({
         ...stateStorage,
-        player: { ...stateStorage.player,
+        player: {
+          ...stateStorage.player,
           name: state.name,
-          gravatarEmail: state.gravatarEmail } })))));
+          gravatarEmail: state.gravatarEmail,
+        },
+      })))));
   }
 
   handleClick() {
@@ -53,7 +58,7 @@ class Login extends React.Component {
     history.push('/jogo');
   }
 
-  redirectConfig() {
+  redConfig() {
     const { history } = this.props;
     history.push('/config');
   }
@@ -61,28 +66,28 @@ class Login extends React.Component {
   render() {
     const { name, email } = this.state;
     return (
-      <div className="container">
-        <form className="form-container sign-in-container">
-          <h1>Sign in</h1>
-          <label htmlFor="input-name">
-            Nome:
+      <div className="card">
+        <img src={ triviaImg } alt="logo" className="img" />
+        <form className="form">
+          <label className="label" htmlFor="input-name">
+            Name
             <input
               type="text"
               id="input-name"
               name="name"
-              placeholder="insira seu nome"
+              placeholder="Insira seu nome"
               data-testid="input-player-name"
               value={ name }
               onChange={ this.handleChange }
             />
           </label>
-          <label htmlFor="input-email">
-            Email:
+          <label className="label" htmlFor="input-email">
+            Email
             <input
               type="email"
               id="input-email"
               name="email"
-              placeholder="grupo2@trybe.com"
+              placeholder="email@gmail.com"
               data-testid="input-gravatar-email"
               value={ email }
               onChange={ this.handleChange }
@@ -94,16 +99,17 @@ class Login extends React.Component {
             data-testid="btn-play"
             onClick={ this.handleClick }
           >
-            Jogar
-          </button>
-          <button
-            data-testid="btn-settings"
-            onClick={ this.redirectConfig }
-            type="button"
-          >
-            Configurações
+            START
           </button>
         </form>
+        <button
+          data-testid="btn-settings"
+          className="btn-settings"
+          onClick={ this.redConfig }
+          type="button"
+        >
+          Configurações
+        </button>
       </div>
     );
   }
