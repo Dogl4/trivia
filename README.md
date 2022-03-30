@@ -16,11 +16,7 @@ Um projeto de front end, que pega e trata os dados de uma API e renderiza em mod
 - JavaScript
 - CSS
 
-## 🚀 Links
-
-- Site em produção: [Link](https://dogl4.github.io/trivia/index.html) 
-
-##  :inbox_tray: Para rodar este projeto
+##  :inbox_tray: Para rodar este projeto localmente
 - Para baixar este projeto via git rode no terminal: `git clone git@github.com:Dogl4/trivia.git` ou baixe .zipado [aqui](https://github.com/Dogl4/trivia/archive/refs/heads/main.zip)
 - No terminal, na pasta raiz, rode o comando: `npm install` e depois `npm start`
  
@@ -28,7 +24,11 @@ Um projeto de front end, que pega e trata os dados de uma API e renderiza em mod
 
 ✅ Concluído
 
-## Colaboradores
+## 🚀 Links
+
+- Site no ar: [Link](https://trivia-dogl4.vercel.app/) 
+
+## :busts_in_silhouette: Contribuintes
 
 Estas pessoas participaram deste projeto:
 
