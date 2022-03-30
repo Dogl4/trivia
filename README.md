@@ -60,7 +60,7 @@ Estas pessoas participaram deste projeto:
       </a>
         <td  align="center">
       <a  target=”_blank”  href="https://github.com/JoaoVFerreira">
-        <img  src="https://avatars.githubusercontent.com/u/85767482?v=4"  width="100px;"  alt="Foto do João Ferreira no GitHub"/><br>
+        <img  src="https://avatars.githubusercontent.com/u/85767482?v=4"  width="100px;"  alt="Foto de João Ferreira no GitHub"/><br>
         <sub>
           <b>João Ferreira</b>
         </sub>
@@ -68,15 +68,23 @@ Estas pessoas participaram deste projeto:
     </td>
      <td  align="center">
       <a  target=”_blank”  href="https://github.com/yalves8">
-        <img  src="https://avatars.githubusercontent.com/u/19296639?v=4"  width="100px;"  alt="Foto do  no GitHub"/><br>
+        <img  src="https://avatars.githubusercontent.com/u/19296639?v=4"  width="100px;"  alt="Foto de Yasmin Alves no GitHub"/><br>
         <sub>
           <b>Yasmin Alves</b>
         </sub>
       </a>
     </td>
+     <td  align="center">
+      <a  target=”_blank”  href="https://github.com/yalves8">
+        <img  src="https://avatars.githubusercontent.com/u/19296639?v=4"  width="100px;"  alt="Foto de Beatriz Bianca no GitHub"/><br>
+        <sub>
+          <b>Beatriz Bianca</b>
+        </sub>
+      </a>
+    </td>
     <td  align="center">
-      <a  target=”_blank”  href="https://github.com/betrybe">
-        <img  src="https://avatars.githubusercontent.com/u/55410300?s=200&v=4"  width="100px;"  alt="Foto Trybe"/><br>
+      <a  target=”_blank”  href="https://github.com/BeatrizSilva43">
+        <img  src="https://avatars.githubusercontent.com/u/89041010?v=4"  width="100px;"  alt="Foto Trybe"/><br>
         <sub>
           <b>Trybe</b>
         </sub>
