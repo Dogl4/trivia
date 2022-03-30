@@ -34,7 +34,6 @@ export class RankingPlayer extends Component {
 
   render() {
     const { ranking } = this.state;
-    console.log(ranking);
     return (
       <>
         <Header />

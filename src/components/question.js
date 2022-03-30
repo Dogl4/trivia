@@ -9,19 +9,27 @@ class Question extends React.Component {
       green: '',
       red: '',
       end: false,
-      // scoreState: 0,
+      newArray: [],
     };
     this.correctAnswer = this.correctAnswer.bind(this);
     this.resultCorrect = this.resultCorrect.bind(this);
     this.numberDifficulty = this.numberDifficulty.bind(this);
     this.newScores = this.newScores.bind(this);
+    this.randomQuestion = this.randomQuestion.bind(this);
+    this.embaralhar = this.embaralhar.bind(this);
+    this.setNewState = this.setNewState.bind(this);
   }
 
-  updateBorder() {
-    this.setState({
-      green: '3px solid rgb(6, 240, 15)',
-      red: '3px solid rgb(255, 0, 0)',
-    });
+  componentDidMount() {
+    this.setNewState();
+  }
+
+  setNewState() {
+    const { questionCurrent:
+      { incorrect_answers: incorrectAnswers }, questionCurrent } = this.props;
+    const array = [...incorrectAnswers, questionCurrent.correct_answer];
+    const newArray = this.embaralhar(array);
+    this.setState({ newArray });
   }
 
   newScores(stateStorage, scoreCurrent) {
@@ -75,11 +83,57 @@ class Question extends React.Component {
     return (verify === question && this.resultCorrect(scoreCurrent));
   }
 
+  embaralhar(array) {
+    for (let i = array.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  randomQuestion(newArray) {
+    return newArray.map((item, index) => {
+      const { green, red, end } = this.state;
+      const { questionCurrent:
+      { difficulty },
+      questionCurrent, timer } = this.props;
+      console.log('timer', timer);
+      console.log('end', end);
+
+      return (item === questionCurrent.correct_answer)
+        ? (
+          <button
+            data-testid="correct-answer"
+            onClick={ () => this.correctAnswer(item,
+              questionCurrent.correct_answer, difficulty, timer) }
+            type="button"
+            value={ item }
+            style={ { border: green } }
+            disabled={ (end || (timer === 0)) }
+          >
+            { item }
+          </button>
+        ) : (
+          <button
+            value={ item }
+            data-testid={ `wrong-answer-${index}` }
+            key={ index }
+            type="button"
+            onClick={ () => this.correctAnswer(
+              item, questionCurrent.correct_answer, difficulty, timer,
+            ) }
+            style={ { border: red } }
+            disabled={ (end || (timer === 0)) }
+          >
+            { item }
+          </button>
+        );
+    });
+  }
+
   render() {
-    const { green, red, end } = this.state;
-    const { questionCurrent:
-      { question, category, difficulty }, questionCurrent, timer, buttonNext,
-    } = this.props;
+    const { end, newArray } = this.state;
+    const { questionCurrent: { question, category }, timer, buttonNext } = this.props;
     return (
       <section className="question">
         <div>
@@ -87,32 +141,7 @@ class Question extends React.Component {
           <p data-testid="question-text">{ question }</p>
         </div>
         <div>
-          <button
-            data-testid="correct-answer"
-            onClick={ () => this.correctAnswer(questionCurrent.correct_answer,
-              questionCurrent.correct_answer, difficulty, timer) }
-            type="button"
-            value={ questionCurrent.correct_answer }
-            style={ { border: green } }
-            disabled={ timer === 0 }
-          >
-            { questionCurrent.correct_answer }
-          </button>
-          {questionCurrent.incorrect_answers.map((wrong, index) => (
-            <button
-              value={ wrong }
-              data-testid={ `wrong-answer-${index}` }
-              key={ index }
-              type="button"
-              onClick={ () => this.correctAnswer(
-                wrong, questionCurrent.correct_answer, difficulty, timer,
-              ) }
-              style={ { border: red } }
-              disabled={ timer === 0 }
-            >
-              { wrong }
-            </button>
-          ))}
+          { this.randomQuestion(newArray) }
         </div>
         { (end || (timer === 0)) && <ButtonNext onClick={ buttonNext } /> }
       </section>
