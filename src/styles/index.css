@@ -19,7 +19,7 @@ body {
   font-weight: 400;
   line-height: 1.42857;
   top: 0;
-  right: 0;
+  right: -280px;
   margin: 10px 10px 0 0;
   padding: 6px 12px;
   text-align: center;
@@ -177,8 +177,3 @@ body {
   margin: 20px auto 0;
   width: 60%;
 }
-
-/* .card button:hover {
-  box-shadow: 0 0 6px #b15ed375;
-  background-color: #7c508a;
-} */
