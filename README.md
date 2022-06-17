@@ -1,14 +1,9 @@
-
-
-
 # Projeto Trivia
-
-  ## 📷 Screenshot
-![Screenshot](./trivia.gif)  
-
 ## 📋 Descrição do projeto
-
 Um projeto de front end, que pega e trata os dados de uma API e renderiza em modo de um jogo. Este foi um projeto em grupo, realizado dentro da trybe. 
+
+## 📷 Screenshot
+![Screenshot](./trivia.gif)  
 
 ## 💻 Tecnologias utilizadas
 - React
@@ -21,18 +16,13 @@ Um projeto de front end, que pega e trata os dados de uma API e renderiza em mod
 - No terminal, na pasta raiz, rode o comando: `npm install` e depois `npm start`
  
 ## 📈 Status do projeto
-
 ✅ Concluído
 
 ## 🚀 Links
-
 - Site no ar: [Link](https://trivia-dogl4.vercel.app/) 
 
 ## :busts_in_silhouette: Contribuintes
-
 Estas pessoas participaram deste projeto:
-
-
 <table>
   <tr  style="width:120px">
     <td align="center">
@@ -92,5 +82,3 @@ Estas pessoas participaram deste projeto:
     </td>
 </tr>
 </table>
-
-
